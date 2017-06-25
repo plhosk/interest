@@ -1,0 +1,10 @@
+Task list
+
+Client:
+  ☐ Revamp async code error handling
+  ☐ Optimize for mobile
+  ☐ Implement code-splitting
+  ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
+
+Server:
+  ☐ 
