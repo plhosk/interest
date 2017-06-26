@@ -18,7 +18,7 @@ router.route('/')
         'local.username': username,
         'local.password': password,
       })
-      newUser.save()
+      return newUser.save()
       .then(() => res.sendStatus(200))
     })
     .catch(err => next(err))

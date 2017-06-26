@@ -20,9 +20,9 @@ const AppContent = () => (
     <Route component={TopBar} />
     <div style={styles.appContent}>
       <Switch>
-        <Route path="/" component={Introduction} />
         <Route path="/login" component={UserPassForm} />
         <Route path="/signup" component={UserPassForm} />
+        <Route path="/" component={Introduction} />
       </Switch>
       <Route component={ErrorDisplay} />
     </div>

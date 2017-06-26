@@ -71,8 +71,13 @@ if (process.env.NODE_ENV !== 'production') {
 // in production mode this also serves index.hml and JS bundles
 app.use(express.static('public'))
 
+
 // error handler for API requests
 app.use('/api', (err, req, res, next) => { // eslint-disable-line no-unused-vars
+  // console.log(`Error handler: ${JSON.stringify(err)}`) // eslint-disable-line no-console
+  if (process.env.NODE_ENV !== 'production' && err.stack) {
+    console.error(err.stack) // eslint-disable-line no-console
+  }
   // Send error in json
   res.status(err.status || 500).send({ message: (typeof err === 'string' ? err : err.message) })
 })
