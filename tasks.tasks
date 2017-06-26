@@ -7,4 +7,5 @@ Client:
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
 
 Server:
-  ☐ 
+  ☐ Look into server-side rendering
+  

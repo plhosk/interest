@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
-import MapsLocalLibrary from 'material-ui/svg-icons/maps/local-library'
+import ImageImage from 'material-ui/svg-icons/image/image'
 import ActionAccountBox from 'material-ui/svg-icons/action/account-box'
 import ActionPermIdentity from 'material-ui/svg-icons/action/perm-identity'
 import PowerSettingsNew from 'material-ui/svg-icons/action/power-settings-new'
@@ -143,7 +143,7 @@ class TopBar extends React.Component {
             <FlatButton
               style={styles.button}
               labelPosition={'after'}
-              icon={<MapsLocalLibrary />}
+              icon={<ImageImage />}
               label={<span style={styles.buttonText}>
                 Interest
               </span>}

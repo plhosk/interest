@@ -3,12 +3,12 @@ import debug from 'debug'
 
 import User from '../schemas/user'
 
-debug('api')
+const log = debug('api')
 
-const router = express.Router({ mergeParams: true })
+const router = express.Router()
 
 router.param('userId', (req, res, next, userId) => {
-  debug(`Received API request for user ${userId}`)
+  log(`Received API request for user ${userId}`)
   User.findOne({ userId })
     .then((requestedUser) => {
       req.requestedUser = requestedUser
@@ -21,13 +21,13 @@ router.param('userId', (req, res, next, userId) => {
 router.route('/:userId')
   // View a user
   .get((req, res) => {
-    debug(`sending user object ${req.requestedUser.userId}`)
-    debug(req.requestedUser.toJson())
+    log(`sending user object ${req.requestedUser.userId}`)
+    log(req.requestedUser.toJson())
     res.send(req.requestedUser.toJson()) // Already fetched user, just send it
   })
 
   .put((req, res, next) => {
-    debug(req.isAuthenticated, req.user.userId, req.body)
+    log(req.isAuthenticated, req.user.userId, req.body)
     if (!req.isAuthenticated() || req.user.userId !== req.body.userId) {
       return next({ status: 401, message: 'Requesting user is not authenticated' })
     }
@@ -47,7 +47,7 @@ router.route('/')
         users.forEach((element) => {
           userList.push(element.toJson())
         })
-        debug('Sending user list: ', userList)
+        log('Sending user list: ', userList)
         res.send(userList)
       })
       .catch(err => next(err))

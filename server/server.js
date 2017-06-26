@@ -13,6 +13,7 @@ import passport from 'passport'
 import bluebird from 'bluebird'
 
 import apiGithub from './api/github'
+import apiTwitter from './api/twitter'
 import apiSignup from './api/signup'
 import apiLogin from './api/login'
 import apiLogout from './api/logout'
@@ -49,6 +50,7 @@ app.use(passport.session())
 
 // handle api paths here
 app.use('/api/github', apiGithub) // also handles /api/github/callback
+app.use('/api/twitter', apiTwitter) // also handles /api/twitter/callback
 app.use('/api/signup', apiSignup)
 app.use('/api/login', apiLogin)
 app.use('/api/logout', apiLogout)
@@ -72,7 +74,6 @@ app.use(express.static('public'))
 // error handler for API requests
 app.use('/api', (err, req, res, next) => { // eslint-disable-line no-unused-vars
   // Send error in json
-  console.log(err) // eslint-disable-line no-console
   res.status(err.status || 500).send({ message: (typeof err === 'string' ? err : err.message) })
 })
 

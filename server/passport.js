@@ -1,6 +1,7 @@
 import passport from 'passport'
 import passportLocal from 'passport-local'
 import passportGithub2 from 'passport-github2'
+import passportTwitter from 'passport-twitter'
 
 import User from './schemas/user'
 
@@ -65,6 +66,39 @@ passport.use(new GitHubStrategy({
   })
 }))
 
+const TwitterStrategy = passportTwitter.Strategy
+
+passport.use(new TwitterStrategy({
+  consumerKey: process.env.TWITTER_KEY,
+  consumerSecret: process.env.TWITTER_SECRET,
+  callbackURL: 'https://interest-plhosk.herokuapp.com/api/twitter/callback',
+}, (token, tokenSecret, profile, done) => {
+  User.findOne({
+    'twitter.id': profile.id_str,
+  })
+  .then((user) => {
+    if (!user) { // No user with the same twitter id found. Create a new user
+      const newUser = new User({
+        'twitter.id': profile.id_str,
+        'twitter.name': profile.name,
+      })
+      return newUser.save()
+      .then(newUserSaved => done(null, newUserSaved))
+    }
+    // An existing user was found with this twitter ID. Continue with authentication
+    return done(null, user)
+  })
+  .catch(err => done(err))
+}))
+
+/**
+ * Configure Passport authenticated session persistence.
+ * In order to restore authentication state across HTTP requests, Passport needs
+ * to serialize users into and deserialize users out of the session.  In a
+ * production-quality application, this would typically be as simple as
+ * supplying the user ID when serializing, and querying the user record by ID
+ * from the database when deserializing.
+ */
 export default () => {
   passport.serializeUser((user, done) => {
     done(null, user._id) // eslint-disable-line no-underscore-dangle
