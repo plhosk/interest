@@ -6,11 +6,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 const styles = {
   outerDiv: {
-    backgroundColor: '#f1f1f2',
+    // backgroundColor: '#f1f1f2',
     borderRadius: 40,
     fontSize: '1.1em',
     lineHeight: '1.8em',
-    padding: 0,
+    margin: 10,
+    padding: 5,
   },
   logo: {
     height: 60,
@@ -20,17 +21,16 @@ const styles = {
     padding: 4,
   },
   title: {
-    color: '#1995ad',
+    color: '#a57c65',
+    fontWeight: 'bold',
     fontSize: '3em',
     textAlign: 'center',
-    marginTop: 16,
     lineHeight: '1em',
   },
   content: {
     maxWidth: 500,
     margin: '0 auto',
-    color: '#1995ad',
-    marginBottom: 25,
+    marginBottom: 10,
   },
 }
 
@@ -48,10 +48,10 @@ class Introduction extends React.Component {
     const { user } = this.props
     return (
       <div style={styles.outerDiv}>
-        <h2 style={styles.title}>
-          <ImageImage style={styles.logo} color={'#755248'} />
+        <div style={styles.title}>
+          <ImageImage style={styles.logo} color={'#a57c65'} />
           Interest
-        </h2>
+        </div>
         <div style={styles.content}>
           <ul>
             <li>

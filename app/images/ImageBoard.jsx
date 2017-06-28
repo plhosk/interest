@@ -1,21 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import TimeAgo from 'react-timeago'
+
+import SingleImage from './SingleImage'
 
 const styles = {
   outermostDiv: {},
   flexContainer: {
+    margin: '10px 0',
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  imageContainer: {},
-  imgDiv: {},
-  img: {},
-  captionDiv: {},
-  submitterDiv: {},
 }
 
 class ImageBoard extends React.Component {
@@ -27,6 +24,11 @@ class ImageBoard extends React.Component {
   render() {
     const { userInfo, images } = this.props
 
+    // Wait for both userInfo and images to be populated before rendering
+    if (userInfo.allIds.length === 0 || images.allIds.length === 0) {
+      return null
+    }
+
     return (
       <div style={styles.outermostDiv}>
         <div style={styles.flexContainer}>
@@ -35,24 +37,15 @@ class ImageBoard extends React.Component {
               return null
             }
             return (
-              <div key={imageId} style={styles.imageContainer}>
-                <div style={styles.imgDiv}>
-                  <img
-                    style={styles.img}
-                    alt={images.byId[imageId].caption}
-                    src={images.byId[imageId].url}
-                  />
-                </div>
-                <div style={styles.captionDiv}>
-                  {images.byId[imageId].caption}
-                </div>
-                <div style={styles.submitterDiv}>
-                  {userInfo.byId[images.byId[imageId].submitterId].name}
-                </div>
-                <div style={styles.dateDiv}>
-                  <TimeAgo date={Date.parse(images.byId[imageId].date)} />
-                </div>
-              </div>
+              <SingleImage
+                key={imageId}
+                imageId={imageId}
+                url={images.byId[imageId].url}
+                caption={images.byId[imageId].caption}
+                submitterId={images.byId[imageId].submitterId}
+                submitterName={userInfo.byId[images.byId[imageId].submitterId].name}
+                date={images.byId[imageId].date}
+              />
             )
           })}
         </div>

@@ -1,12 +1,14 @@
 Task list
 
 Client:
-  ☐ Implement image board and submission form
+  ☐ Implement image preview
+  ☐ Broken image detection and replacement
+  ☐ Integrate react-masonry-infinite
   ☐ Add twitter auth support to client
-  ☐ Optimize for mobile
+  ☐ Streamline introduction
+  ☐ Browse posts of a specific user (click on username)
+  ☐ Check page on other browsers
   ☐ Implement code-splitting
-  ✔ Implement client API fetches and sagas @done (6/26/2017, 7:54:50 PM)
-  ✔ Revamp async code error handling @done (6/26/2017, 7:54:23 PM)
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
 
 Server:

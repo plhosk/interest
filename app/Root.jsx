@@ -1,7 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-// import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import AppContent from './AppContent'
@@ -11,10 +11,16 @@ import AppContent from './AppContent'
 //   ...darkBaseTheme, // Start with dark theme and customize from here
 // })
 
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: '#303030',
+  },
+})
+
 const Root = () => (
   <Router>
     { /* <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}> */ }
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <AppContent />
     </MuiThemeProvider>
   </Router>

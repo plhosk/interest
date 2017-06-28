@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField'
 
 const styles = {
   appBar: {
-    backgroundColor: '#755248',
+    backgroundColor: '#a57c65',
   },
   home: {
     backgroundColor: 'transparent',
@@ -34,7 +34,8 @@ const styles = {
     paddingTop: 6,
     marginBottom: 8,
     textAlign: 'left',
-    minWidth: 160,
+    minWidth: 140,
+    // minWidth: 160,
   },
   buttonText: {
     // fontSize: '1.1em',
