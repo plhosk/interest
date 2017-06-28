@@ -1,10 +1,15 @@
 import express from 'express'
+import debug from 'debug'
+
 import User from '../schemas/user'
+
+const log = debug('api')
 
 const router = express.Router()
 
 router.route('/')
   .post((req, res, next) => {
+    log('Received API request for local signup')
     const username = req.body.username
     const password = req.body.password
     User.findOne({

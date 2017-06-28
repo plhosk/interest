@@ -1,7 +1,7 @@
 const errorReducer = (state = '', action) => {
   switch (action.type) {
     case 'ERROR_MESSAGE_SHOW':
-      return action.error
+      return action.message
     case 'ERROR_MESSAGE_HIDE':
       return ''
     default:

@@ -3109,9 +3109,9 @@ mongoose-sequence@^3.2.0:
   dependencies:
     lodash "^4.6.1"
 
-mongoose@^4.7.5:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.11.0.tgz#76edc51959520f46ab6f322156833bdfa35a2bc0"
+mongoose@4.10.8:
+  version "4.10.8"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.10.8.tgz#31f44ed7884756f9fd9b7708ddcb3fcb4250f34e"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
@@ -3790,6 +3790,10 @@ react-tap-event-plugin@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
   dependencies:
     fbjs "^0.8.6"
+
+react-timeago@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-3.2.1.tgz#dcca61514dac108d8f86ec7e40c947296a6954a0"
 
 react-transition-group@^1.1.2:
   version "1.2.0"

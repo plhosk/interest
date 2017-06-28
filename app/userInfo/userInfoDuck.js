@@ -21,30 +21,32 @@ const userInfoReducer = (state = { byId: {}, allIds: [] }, action) => {
   }
 }
 
-/**
+/* ****************************************************************************
  * Fetch-saga pairs
  */
 
+/**
+ * User Info Request
+ * Get a list of all users
+ */
 const userInfoFetch = () => (
   fetch('/api/users', {
     method: 'GET',
   })
   .then((response) => {
     if (response.status === 200) {
-      return response.json()
-      .then(json => ({ response: json }))
+      return response.json().then(json => json)
     }
-    return { error: response }
+    throw response
   })
-  .catch(error => ({ error }))
 )
-
 function* userInfoRequest() {
-  const { response, error } = yield call(userInfoFetch)
-  if (response) {
-    yield put({ type: 'USERINFO_RECEIVED', userInfo: response })
-  } else {
-    yield put({ type: 'USERINFO_REQUEST_ERROR', error })
+  try {
+    const userInfo = yield call(userInfoFetch)
+    yield put({ type: 'USERINFO_RECEIVED', userInfo })
+  } catch (e) {
+    const { status, message } = e
+    yield put({ type: 'USERINFO_REQUEST_ERROR', status, message })
   }
 }
 

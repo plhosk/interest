@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
       type: String,
     },
     id: {
-      type: Number,
+      type: String,
     },
   },
   twitter: {
@@ -34,8 +34,8 @@ const userSchema = mongoose.Schema({
     default: Date.now,
   },
   displayName: String,
-  city: String,
-  country: String,
+  // city: String,
+  // country: String,
 })
 
 userSchema.plugin(AutoIncrement, { inc_field: 'userId' })
@@ -83,8 +83,8 @@ userSchema.methods.toJson = function () {
   return {
     userId: this.userId,
     name: this.name(),
-    city: this.city || '',
-    country: this.country || '',
+    // city: this.city || '',
+    // country: this.country || '',
   }
 }
 

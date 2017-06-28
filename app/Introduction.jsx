@@ -6,9 +6,11 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 const styles = {
   outerDiv: {
+    backgroundColor: '#f1f1f2',
+    borderRadius: 40,
     fontSize: '1.1em',
     lineHeight: '1.8em',
-    padding: '0 10px',
+    padding: 0,
   },
   logo: {
     height: 60,
@@ -18,7 +20,7 @@ const styles = {
     padding: 4,
   },
   title: {
-    color: '#755248',
+    color: '#1995ad',
     fontSize: '3em',
     textAlign: 'center',
     marginTop: 16,
@@ -27,7 +29,7 @@ const styles = {
   content: {
     maxWidth: 500,
     margin: '0 auto',
-    color: '#755248',
+    color: '#1995ad',
     marginBottom: 25,
   },
 }
@@ -87,12 +89,7 @@ class Introduction extends React.Component {
 
 Introduction.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    userId: PropTypes.number,
-    name: PropTypes.string,
-    city: PropTypes.string,
-    country: PropTypes.string,
-  }),
+  user: PropTypes.shape({}),
 }
 
 Introduction.defaultProps = {

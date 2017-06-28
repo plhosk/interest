@@ -4,6 +4,7 @@ import { take, select, all } from 'redux-saga/effects'
 import { errorReducer } from './error/errorDuck'
 import { authReducer, authSagas } from './auth/authDuck'
 import { userInfoReducer, userInfoSagas } from './userInfo/userInfoDuck'
+import { imagesReducer, imagesSagas } from './images/imagesDuck'
 
 // Define redux store
 const initialState = {
@@ -13,12 +14,17 @@ const initialState = {
     byId: {},
     allIds: [],
   },
+  images: {
+    byId: {},
+    allIds: [],
+  },
 }
 
 const rootReducer = combineReducers({
   auth: authReducer,
   userInfo: userInfoReducer,
   error: errorReducer,
+  images: imagesReducer,
 })
 
 /**
@@ -43,6 +49,7 @@ function* rootSaga() {
     logActions(),
     authSagas(),
     userInfoSagas(),
+    imagesSagas(),
   ])
 }
 

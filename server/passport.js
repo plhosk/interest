@@ -43,7 +43,7 @@ passport.use(new GitHubStrategy({
 (accessToken, refreshToken, profile, done) => {
   // check user table for anyone with a github ID of profile.id
   User.findOne({
-    'github.id': profile.id,
+    'github.id': profile.id.toString(),
   }, (errFind, user) => {
     if (errFind) {
       return done(errFind)
@@ -52,7 +52,7 @@ passport.use(new GitHubStrategy({
     if (!user) {
       user = new User({ // eslint-disable-line no-param-reassign
         'github.username': profile.username,
-        'github.id': profile.id,
+        'github.id': profile.id.toString(),
       })
       return user.save((errSave) => {
         if (errSave) {

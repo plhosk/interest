@@ -111,12 +111,7 @@ const UserPassForm = (props) => {
 }
 
 UserPassForm.propTypes = {
-  user: PropTypes.shape({
-    userId: PropTypes.number,
-    name: PropTypes.string,
-    city: PropTypes.string,
-    country: PropTypes.string,
-  }),
+  user: PropTypes.shape({}),
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,

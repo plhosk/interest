@@ -1,9 +1,12 @@
 Task list
 
 Client:
-  ☐ Revamp async code error handling
+  ☐ Implement image board and submission form
+  ☐ Add twitter auth support to client
   ☐ Optimize for mobile
   ☐ Implement code-splitting
+  ✔ Implement client API fetches and sagas @done (6/26/2017, 7:54:50 PM)
+  ✔ Revamp async code error handling @done (6/26/2017, 7:54:23 PM)
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
 
 Server:

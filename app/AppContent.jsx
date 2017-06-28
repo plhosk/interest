@@ -6,8 +6,12 @@ import TopBar from './TopBar'
 import ErrorDisplay from './error/ErrorDisplay'
 import Introduction from './Introduction'
 import UserPassForm from './auth/UserPassForm'
+import SubmitImage from './images/SubmitImage'
+import ImageBoard from './images/ImageBoard'
 
 const styles = {
+  outermostDiv: {
+  },
   appContent: {
     maxWidth: 800,
     margin: '0 auto',
@@ -16,7 +20,7 @@ const styles = {
 }
 
 const AppContent = () => (
-  <div>
+  <div style={styles.outermostDiv}>
     <Route component={TopBar} />
     <div style={styles.appContent}>
       <Switch>
@@ -25,6 +29,8 @@ const AppContent = () => (
         <Route path="/" component={Introduction} />
       </Switch>
       <Route component={ErrorDisplay} />
+      <Route component={SubmitImage} />
+      <Route component={ImageBoard} />
     </div>
   </div>
 )

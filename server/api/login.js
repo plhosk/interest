@@ -1,11 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import express from 'express'
 import passport from 'passport'
+import debug from 'debug'
+
+const log = debug('api')
 
 const router = express.Router()
 
 router.route('/')
   .post((req, res, next) => {
+    log('Received API request for login authentication')
     passport.authenticate('login', (errAuth, user) => {
       if (errAuth) {
         return next(errAuth)
@@ -30,6 +34,7 @@ router.route('/')
 
   // Get user object of requesting authenticated user
   .get((req, res, next) => {
+    log('Received API request for info of authenticated user')
     if (req.isAuthenticated()) {
       // res.send({
       //   // id: req.user._id,

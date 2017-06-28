@@ -66,11 +66,11 @@ class TopBar extends React.Component {
   state = {
     openProfileDialog: false,
     profileName: undefined,
-    profileCity: undefined,
-    profileCountry: undefined,
+    // profileCity: undefined,
+    // profileCountry: undefined,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Refresh user state when loading component (including after login redirect)
     this.props.dispatch({ type: 'AUTH_USER_OBJECT_REQUEST' })
     // Populate userInfo to allow lookup of other user names and metadata
@@ -80,8 +80,8 @@ class TopBar extends React.Component {
   handleReset = () => {
     this.setState({
       profileName: this.props.user.name,
-      profileCity: this.props.user.city,
-      profileCountry: this.props.user.country,
+      // profileCity: this.props.user.city,
+      // profileCountry: this.props.user.country,
     })
   }
 
@@ -98,20 +98,20 @@ class TopBar extends React.Component {
   handleChangeProfileName = (event) => {
     this.setState({ profileName: event.target.value })
   }
-  handleChangeProfileCity = (event) => {
-    this.setState({ profileCity: event.target.value })
-  }
-  handleChangeProfileCountry = (event) => {
-    this.setState({ profileCountry: event.target.value })
-  }
+  // handleChangeProfileCity = (event) => {
+  //   this.setState({ profileCity: event.target.value })
+  // }
+  // handleChangeProfileCountry = (event) => {
+  //   this.setState({ profileCountry: event.target.value })
+  // }
 
   handleProfileSubmit = (event) => {
     this.props.dispatch({
       type: 'USER_PROFILE_UPDATE_REQUEST',
       userId: this.props.user.userId,
       displayName: this.state.profileName,
-      city: this.state.profileCity,
-      country: this.state.profileCountry,
+      // city: this.state.profileCity,
+      // country: this.state.profileCountry,
     })
     this.handleCloseProfileDialog()
     event.preventDefault()
@@ -184,6 +184,7 @@ class TopBar extends React.Component {
                         onChange={this.handleChangeProfileName}
                       />
                     </div>
+                    { /*
                     <div style={styles.textFieldContainer}>
                       <div style={styles.textFieldLabel}>
                         City
@@ -208,6 +209,7 @@ class TopBar extends React.Component {
                         onChange={this.handleChangeProfileCountry}
                       />
                     </div>
+                    */ }
                   </div>
                 </Dialog>
                 { /* </Link> */ }
@@ -255,8 +257,8 @@ TopBar.propTypes = {
   user: PropTypes.shape({
     userId: PropTypes.number,
     name: PropTypes.string,
-    city: PropTypes.string,
-    country: PropTypes.string,
+    // city: PropTypes.string,
+    // country: PropTypes.string,
   }),
   dispatch: PropTypes.func.isRequired,
 }

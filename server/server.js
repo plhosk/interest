@@ -18,6 +18,7 @@ import apiSignup from './api/signup'
 import apiLogin from './api/login'
 import apiLogout from './api/logout'
 import apiUsers from './api/users'
+import apiImages from './api/images'
 
 import hotRouter from './hot-reload'
 import myPassport from './passport'
@@ -55,6 +56,7 @@ app.use('/api/signup', apiSignup)
 app.use('/api/login', apiLogin)
 app.use('/api/logout', apiLogout)
 app.use('/api/users', apiUsers)
+app.use('/api/images', apiImages)
 
 // Handle 404 (incl. client-side routes) by redirecting to index.html
 app.use(historyApiFallback())
@@ -78,8 +80,12 @@ app.use('/api', (err, req, res, next) => { // eslint-disable-line no-unused-vars
   if (process.env.NODE_ENV !== 'production' && err.stack) {
     console.error(err.stack) // eslint-disable-line no-console
   }
-  // Send error in json
-  res.status(err.status || 500).send({ message: (typeof err === 'string' ? err : err.message) })
+  // Send error object in json
+  const status = err.status || 500
+  res.status(status).send({
+    status,
+    message: (typeof err === 'string' ? err : err.message),
+  })
 })
 
 app.listen(app.get('port'), () => {
