@@ -14,7 +14,6 @@ const styles = {
   },
   imgDiv: {},
   img: {
-    // display: 'block',
     width: 230,
     borderRadius: 6,
   },
@@ -24,9 +23,7 @@ const styles = {
   captionDiv: {
     padding: 5,
     paddingTop: 0,
-    // fontWeight: 'bold',
     fontSize: '1.2em',
-    // fontFamily: 'Helvetica',
     textAlign: 'center',
   },
   submitterDiv: {
@@ -40,35 +37,57 @@ const styles = {
   },
 }
 
-const SingleImage = ({ preview, imageId, url, caption, submitterId, submitterName, date }) => (
-  <Paper style={styles.imageContainer}>
-    <div style={styles.imgDiv}>
-      <img
-        style={styles.img}
-        alt={caption}
-        src={url}
-      />
-    </div>
-    <div style={styles.infoPanel}>
-      <div style={styles.captionDiv}>
-        {caption}
-      </div>
-      {!preview && (
-        <div>
-          <div style={styles.submitterDiv}>
-            {`${submitterName} (#${submitterId})`}
-          </div>
-          <div style={styles.dateDiv}>
-            <TimeAgo date={Date.parse(date)} />{` (#${imageId})`}
-          </div>
+class SingleImage extends React.Component {
+
+  state = {
+    imgHeight: 250,
+  }
+
+
+  onLoad = () => {
+    this.setState({ imgHeight: 'auto' }, () => {
+      this.props.forcePack()
+    })
+  }
+
+  render() {
+    const { preview, imageId, url, caption, submitterId, submitterName, date,
+  } = this.props
+    return (
+      <Paper style={styles.imageContainer}>
+        <div style={styles.imgDiv}>
+          <img
+            style={{ ...styles.img, height: this.state.imgHeight }}
+            alt={caption}
+            src={url}
+            onLoad={this.onLoad}
+          />
         </div>
-      )}
-    </div>
-  </Paper>
-)
+        <div style={styles.infoPanel}>
+          <div style={styles.captionDiv}>
+            {caption}
+          </div>
+          {!preview && (
+            <div>
+              <div style={styles.submitterDiv}>
+                {`${submitterName} (#${submitterId})`}
+              </div>
+              <div style={styles.dateDiv}>
+                <TimeAgo date={Date.parse(date)} />{` (#${imageId})`}
+              </div>
+            </div>
+          )}
+        </div>
+      </Paper>
+    )
+  }
+
+}
+
 
 SingleImage.propTypes = {
   preview: PropTypes.bool,
+  forcePack: PropTypes.func,
   imageId: PropTypes.number,
   url: PropTypes.string.isRequired,
   caption: PropTypes.string.isRequired,
@@ -79,6 +98,7 @@ SingleImage.propTypes = {
 
 SingleImage.defaultProps = {
   preview: false,
+  forcePack: () => {},
   imageId: 0,
   submitterId: 0,
   submitterName: '',

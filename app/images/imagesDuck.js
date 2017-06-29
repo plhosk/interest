@@ -20,11 +20,6 @@ const imagesReducer = (state = { byId: {}, allIds: [] }, action) => {
     case 'IMAGES_SINGLE_RECEIVED': {
       // Update state with received entry
       // Action structure: action.image is a single image object
-      console.log({ // eslint-disable-line no-console
-        byId: { ...state.byId, [action.image.imageId]: action.image },
-        allIds: state.allIds.includes(action.image.imageId) ? state.allIds :
-          [action.image.imageId, ...state.allIds],
-      })
       return {
         byId: { ...state.byId, [action.image.imageId]: action.image },
         allIds: state.allIds.includes(action.image.imageId) ? state.allIds :
@@ -60,6 +55,7 @@ function* imagesListRequest() {
   try {
     const images = yield call(imagesListFetch)
     yield put({ type: 'IMAGES_LIST_RECEIVED', images })
+    yield put({ type: 'MASONRY_SET_HASMORE', hasMore: true })
   } catch (e) {
     const { status, message } = e
     yield put({ type: 'IMAGES_LIST_REQUEST_FAILED', status, message })

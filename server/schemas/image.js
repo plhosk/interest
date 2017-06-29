@@ -26,6 +26,7 @@ imageSchema.methods.toJson = function () {
     submitterId: this.submitterId,
     url: this.url,
     caption: this.caption,
+    // imgHeight: this.imgHeight,
     date: this.date,
     deleted: this.deleted,
   }

@@ -2,7 +2,7 @@ Task list
 
 Client:
   ☐ Broken image detection and replacement
-  ☐ Integrate react-masonry-infinite
+  ☐ Delete support (user gets delete box on mouseover)
   ☐ Add twitter auth support to client
   ☐ Streamline introduction
   ☐ Browse posts of a specific user (click on username)

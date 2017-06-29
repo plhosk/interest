@@ -5,6 +5,7 @@ import { errorReducer } from './error/errorDuck'
 import { authReducer, authSagas } from './auth/authDuck'
 import { userInfoReducer, userInfoSagas } from './userInfo/userInfoDuck'
 import { imagesReducer, imagesSagas } from './images/imagesDuck'
+import { masonryReducer } from './images/masonryDuck'
 
 // Define redux store
 const initialState = {
@@ -18,6 +19,10 @@ const initialState = {
     byId: {},
     allIds: [],
   },
+  masonry: {
+    hasMore: false,
+    newElements: [],
+  },
 }
 
 const rootReducer = combineReducers({
@@ -25,6 +30,7 @@ const rootReducer = combineReducers({
   userInfo: userInfoReducer,
   error: errorReducer,
   images: imagesReducer,
+  masonry: masonryReducer,
 })
 
 /**
