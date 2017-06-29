@@ -20,12 +20,15 @@ const imagesReducer = (state = { byId: {}, allIds: [] }, action) => {
     case 'IMAGES_SINGLE_RECEIVED': {
       // Update state with received entry
       // Action structure: action.image is a single image object
-      const newId = [
-        state.allIds.find(action.image.imageId) ? undefined : action.image.imageId,
-      ]
+      console.log({ // eslint-disable-line no-console
+        byId: { ...state.byId, [action.image.imageId]: action.image },
+        allIds: state.allIds.includes(action.image.imageId) ? state.allIds :
+          [action.image.imageId, ...state.allIds],
+      })
       return {
-        byId: { ...state.byId, ...action.image },
-        allIds: [...state.allIds, ...newId],
+        byId: { ...state.byId, [action.image.imageId]: action.image },
+        allIds: state.allIds.includes(action.image.imageId) ? state.allIds :
+          [action.image.imageId, ...state.allIds],
       }
     }
     default:

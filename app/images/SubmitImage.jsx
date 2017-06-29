@@ -11,7 +11,16 @@ import ImageImage from 'material-ui/svg-icons/image/image'
 import ImageAddToPhotos from 'material-ui/svg-icons/image/add-to-photos'
 // import FlatButton from 'material-ui/FlatButton'
 
+import SingleImage from './SingleImage'
+
 const styles = {
+  superDiv: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  previewContainer: {},
   header: {
     display: 'flex',
     flexFlow: 'row nowrap',
@@ -26,12 +35,10 @@ const styles = {
     fontWeight: 'bold',
     fontSize: '1.1em',
     paddingTop: 8,
-    // marginTop: 4,
     marginTop: -6,
     marginLeft: -6,
     marginRight: -8,
     marginBottom: 16,
-    // margin: '-10px -10px 5px -10px',
   },
   openCloseButton: {
     display: 'block',
@@ -48,27 +55,10 @@ const styles = {
   openCloseButtonButton: {
     width: 50,
     height: 50,
-    // padding: 24,
   },
-  // outerContainer: {
-  //   // textAlign: 'right',
-  //   margin: '0 auto',
-  //   padding: 0,
-  //   maxWidth: 500,
-  //   overflow: 'hidden',
-  //   border: '1px solid #aaa',
-  //   display: 'flex',
-  //   flexFlow: 'row nowrap',
-  //   justifyContent: 'flex-end',
-  // },
   outermostDiv: {
     textAlign: 'left',
-    maxWidth: 500,
-    // height: 50,
-    margin: '0 auto',
-    // width: 48,
-    // height: 48,
-    // width: '100%',
+    width: 500,
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 12,
@@ -83,7 +73,6 @@ const styles = {
     flexFlow: 'row wrap',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    // border: '1px solid grey',
   },
   labelDiv: {
   },
@@ -123,6 +112,9 @@ class SubmitImage extends React.Component {
     caption: '',
     urlErrorText: '',
     captionErrorText: '',
+    showPreview: false,
+    previewUrl: '',
+    previewCaption: '',
   }
 
   togglePanelHeight = () => {
@@ -141,8 +133,21 @@ class SubmitImage extends React.Component {
       caption: '',
       urlErrorText: '',
       captionErrorText: '',
+      showPreview: false,
+      previewUrl: '',
+      previewCaption: '',
     })
   }
+
+  handlePreview = (event) => {
+    event.preventDefault()
+    this.setState({
+      showPreview: !this.state.showPreview,
+      previewUrl: this.state.url,
+      previewCaption: this.state.caption,
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     let doNotSubmit = false
@@ -166,6 +171,7 @@ class SubmitImage extends React.Component {
       url: this.state.url,
       caption: this.state.caption,
     })
+    this.setState({ panelOpen: false, showPreview: false })
   }
 
   render() {
@@ -175,96 +181,107 @@ class SubmitImage extends React.Component {
     }
 
     return (
-      <Paper
-        style={{
-          ...styles.outermostDiv,
-          height: this.state.panelOpen ? 'auto' : 50,
-        }}
-      >
-        <div style={styles.header}>
-          <div
-            style={styles.title}
-            onClick={this.togglePanelHeight}
-            role="button"
-            tabIndex="0"
-          >
-            Submit New Image
-          </div>
-          <div style={styles.openCloseButton}>
-            <IconButton
-              iconStyle={styles.openCloseButtonIcon}
-              style={styles.openCloseButtonButton}
+      <div style={styles.superDiv}>
+        <Paper
+          style={{
+            ...styles.outermostDiv,
+            height: this.state.panelOpen ? 'auto' : 50,
+          }}
+        >
+          <div style={styles.header}>
+            <div
+              style={styles.title}
               onClick={this.togglePanelHeight}
+              role="button"
+              tabIndex="0"
             >
-              {this.state.panelOpen ?
-                <HardwareKeyboardArrowUp /> :
-                <HardwareKeyboardArrowDown />
-              }
-            </IconButton>
-          </div>
-        </div>
-        <form style={styles.form} onSubmit={this.handleSubmit}>
-          <div style={styles.formElementDiv}>
-            <div style={styles.labelDiv}>
-              <label style={styles.label} htmlFor="url">Image URL:</label>
+              Submit New Image
             </div>
-            <div style={styles.textFieldDiv}>
-              <TextField
-                style={styles.textField}
-                id="url"
-                type="text"
-                spellCheck="false"
-                hintText="Enter Image URL"
-                errorText={this.state.urlErrorText}
-                value={this.state.url}
-                onChange={this.handleChangeUrl}
+            <div style={styles.openCloseButton}>
+              <IconButton
+                iconStyle={styles.openCloseButtonIcon}
+                style={styles.openCloseButtonButton}
+                onClick={this.togglePanelHeight}
+              >
+                {this.state.panelOpen ?
+                  <HardwareKeyboardArrowUp /> :
+                  <HardwareKeyboardArrowDown />
+                }
+              </IconButton>
+            </div>
+          </div>
+          <form style={styles.form} onSubmit={this.handleSubmit}>
+            <div style={styles.formElementDiv}>
+              <div style={styles.labelDiv}>
+                <label style={styles.label} htmlFor="url">Image URL:</label>
+              </div>
+              <div style={styles.textFieldDiv}>
+                <TextField
+                  style={styles.textField}
+                  id="url"
+                  type="text"
+                  spellCheck="false"
+                  hintText="Enter Image URL"
+                  errorText={this.state.urlErrorText}
+                  value={this.state.url}
+                  onChange={this.handleChangeUrl}
+                />
+              </div>
+            </div>
+
+            <div style={styles.formElementDiv}>
+              <div style={styles.labelDiv}>
+                <label style={styles.label} htmlFor="caption">Image Caption:</label>
+              </div>
+              <div style={styles.textFieldDiv}>
+                <TextField
+                  style={styles.textField}
+                  id="caption"
+                  type="text"
+                  hintText="Enter Caption"
+                  errorText={this.state.captionErrorText}
+                  value={this.state.caption}
+                  onChange={this.handleChangeCaption}
+                />
+              </div>
+            </div>
+
+            <div style={styles.buttonsDiv}>
+              <RaisedButton
+                style={styles.buttonClear}
+                backgroundColor="#faefd4"
+                label="Clear"
+                onClick={this.handleClear}
+              />
+              <RaisedButton
+                style={styles.buttonPreview}
+                backgroundColor="#d6c6b9"
+                icon={<ImageImage color={'#faefd4'} />}
+                label="Preview"
+                labelPosition="after"
+                onClick={this.handlePreview}
+              />
+              <RaisedButton
+                style={styles.buttonSubmit}
+                backgroundColor="#97b8c2"
+                type="submit"
+                label="Add Image"
+                labelPosition="after"
+                icon={<ImageAddToPhotos color={'#faefd4'} />}
               />
             </div>
-          </div>
-
-          <div style={styles.formElementDiv}>
-            <div style={styles.labelDiv}>
-              <label style={styles.label} htmlFor="caption">Image Caption:</label>
-            </div>
-            <div style={styles.textFieldDiv}>
-              <TextField
-                style={styles.textField}
-                id="caption"
-                type="text"
-                hintText="Enter Caption"
-                errorText={this.state.captionErrorText}
-                value={this.state.caption}
-                onChange={this.handleChangeCaption}
-              />
-            </div>
-          </div>
-
-          <div style={styles.buttonsDiv}>
-            <RaisedButton
-              style={styles.buttonClear}
-              backgroundColor="#faefd4"
-              label="Clear"
-              onClick={this.handleClear}
-            />
-            <RaisedButton
-              style={styles.buttonPreview}
-              backgroundColor="#d6c6b9"
-              icon={<ImageImage color={'#faefd4'} />}
-              label="Preview"
-              labelPosition="after"
-              onClick={this.handlePreview}
-            />
-            <RaisedButton
-              style={styles.buttonSubmit}
-              backgroundColor="#97b8c2"
-              type="submit"
-              label="Add Image"
-              labelPosition="after"
-              icon={<ImageAddToPhotos color={'#faefd4'} />}
+          </form>
+        </Paper>
+        {this.state.showPreview && (
+          <div style={styles.previewContainer}>
+            <SingleImage
+              preview
+              url={this.state.previewUrl}
+              caption={this.state.previewCaption}
             />
           </div>
-        </form>
-      </Paper>
+        )}
+      </div>
     )
   }
 }

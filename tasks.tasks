@@ -1,7 +1,6 @@
 Task list
 
 Client:
-  ☐ Implement image preview
   ☐ Broken image detection and replacement
   ☐ Integrate react-masonry-infinite
   ☐ Add twitter auth support to client

@@ -7,21 +7,26 @@ import Paper from 'material-ui/Paper'
 const styles = {
   imageContainer: {
     width: 240,
-    padding: 20,
+    padding: '5px 5px 0 5px',
     margin: 5,
-    borderRadius: 12,
+    borderRadius: 11,
     background: 'white',
   },
   imgDiv: {},
   img: {
-    width: 200,
+    // display: 'block',
+    width: 230,
     borderRadius: 6,
   },
+  infoPanel: {
+    padding: 10,
+  },
   captionDiv: {
-    margin: '10px 5px',
+    padding: 5,
+    paddingTop: 0,
     // fontWeight: 'bold',
-    fontSize: '1.3em',
-    fontFamily: 'Helvetica',
+    fontSize: '1.2em',
+    // fontFamily: 'Helvetica',
     textAlign: 'center',
   },
   submitterDiv: {
@@ -35,7 +40,7 @@ const styles = {
   },
 }
 
-const SingleImage = ({ imageId, url, caption, submitterId, submitterName, date }) => (
+const SingleImage = ({ preview, imageId, url, caption, submitterId, submitterName, date }) => (
   <Paper style={styles.imageContainer}>
     <div style={styles.imgDiv}>
       <img
@@ -44,25 +49,40 @@ const SingleImage = ({ imageId, url, caption, submitterId, submitterName, date }
         src={url}
       />
     </div>
-    <div style={styles.captionDiv}>
-      {`Image #${imageId}: ${caption}`}
-    </div>
-    <div style={styles.submitterDiv}>
-      {`${submitterName} (#${submitterId})`}
-    </div>
-    <div style={styles.dateDiv}>
-      <TimeAgo date={Date.parse(date)} />
+    <div style={styles.infoPanel}>
+      <div style={styles.captionDiv}>
+        {caption}
+      </div>
+      {!preview && (
+        <div>
+          <div style={styles.submitterDiv}>
+            {`${submitterName} (#${submitterId})`}
+          </div>
+          <div style={styles.dateDiv}>
+            <TimeAgo date={Date.parse(date)} />{` (#${imageId})`}
+          </div>
+        </div>
+      )}
     </div>
   </Paper>
 )
 
 SingleImage.propTypes = {
-  imageId: PropTypes.number.isRequired,
+  preview: PropTypes.bool,
+  imageId: PropTypes.number,
   url: PropTypes.string.isRequired,
   caption: PropTypes.string.isRequired,
-  submitterId: PropTypes.number.isRequired,
-  submitterName: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  submitterId: PropTypes.number,
+  submitterName: PropTypes.string,
+  date: PropTypes.string,
+}
+
+SingleImage.defaultProps = {
+  preview: false,
+  imageId: 0,
+  submitterId: 0,
+  submitterName: '',
+  date: '0',
 }
 
 export default SingleImage

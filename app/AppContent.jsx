@@ -13,7 +13,7 @@ const styles = {
   outermostDiv: {
   },
   appContent: {
-    maxWidth: 800,
+    // maxWidth: 800,
     margin: '0 auto',
     paddingBottom: 30,
     color: '#303030',
