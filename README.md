@@ -21,6 +21,9 @@ This is a full-stack interactive web app I wrote using Javascript.
 
 ---
 
+### Motivation
+- This project is part of an effort to teach myself how to develop full stack web apps. Rather than use create-react-app or another boilerplate, I wanted to learn as much as possible by building from the ground up over several iterations, while making use of some of the latest Javascript technologies. I've attempted to make the code as correct, well-structured and readable as possible, following best practices as I learn them.
+
 ### Technical Overview
 This is a full-stack web app, consisting of a Node/Express API server and a React front end.
 
@@ -35,9 +38,6 @@ This is a full-stack web app, consisting of a Node/Express API server and a Reac
 **Development**
 - The project is tailored for ease of development, with hot reloading and linting to allow for faster iteration and fewer bugs.
 - Babel provides javascript transcoding, allowing for the use of the newest ES6+ language features.
-
-### Motivation
-- This project is part of an effort to teach myself how to develop full stack web apps. Rather than use create-react-app or another boilerplate, I wanted to learn as much as possible by building from the ground up over several iterations, while making use of some of the latest Javascript technologies. I've attempted to make the code as correct, well-structured and readable as possible, following best practices as I learn them.
 
 ### Development Instructions
 - Install [Node.js](https://nodejs.org/en/) and Git (optional)
