@@ -1,7 +1,7 @@
 ## Interest - a full stack Pinterest-style image board
 Paul Hoskinson (plhosk@gmail.com)
 
-![Interest app screenshot](https://raw.githubusercontent.com/plhosk/temp/master/screenshot-book-trader.png)
+![Interest app screenshot](https://github.com/plhosk/temp/raw/master/screenshot-interest.png)
 
 This is a full-stack interactive web app I wrote using Javascript.
 
