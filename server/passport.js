@@ -80,13 +80,13 @@ passport.use(new TwitterStrategy({
   })
   .then((user) => {
     if (!user) { // No user with the same twitter id found. Create a new user
-      const newUser = new User({
+      user = new User({  // eslint-disable-line no-param-reassign
         'twitter.id': profile.id.toString(),
         'twitter.name': profile.name,
         displayName: profile.displayName,
       })
-      return newUser.save()
-      .then(newUserSaved => done(null, newUserSaved))
+      return user.save()
+      .then(userSaved => done(null, userSaved))
     }
     // An existing user was found with this twitter ID. Continue with authentication
     return done(null, user)
