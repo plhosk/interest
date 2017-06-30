@@ -54,6 +54,7 @@ passport.use(new GitHubStrategy({
         'github.username': profile.username,
         'github.id': profile.id.toString(),
         displayName: profile.name,
+        'local.username': `github-${profile.username}`, // to prevent duplicate usernames
       })
       return user.save((errSave) => {
         if (errSave) {
@@ -84,6 +85,7 @@ passport.use(new TwitterStrategy({
         'twitter.id': profile.id.toString(),
         'twitter.name': profile.username,
         displayName: profile.displayName,
+        'local.username': `twitter-${profile.username}`, // to prevent duplicate usernames
       })
       return user.save()
       .then(userSaved => done(null, userSaved))
