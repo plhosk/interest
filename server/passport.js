@@ -74,15 +74,15 @@ passport.use(new TwitterStrategy({
   consumerSecret: process.env.TWITTER_SECRET,
   callbackURL: process.env.TWITTER_CALLBACK,
 }, (token, tokenSecret, profile, done) => {
-  console.log(JSON.stringify(profile)) // eslint-disable-line no-console
   User.findOne({
     'twitter.id': profile.id.toString(),
   })
   .then((user) => {
+    console.log('User to find: ', JSON.stringify(user)) // eslint-disable-line no-console
     if (!user) { // No user with the same twitter id found. Create a new user
       user = new User({  // eslint-disable-line no-param-reassign
         'twitter.id': profile.id.toString(),
-        'twitter.name': profile.name,
+        'twitter.name': profile.username,
         displayName: profile.displayName,
       })
       return user.save()
