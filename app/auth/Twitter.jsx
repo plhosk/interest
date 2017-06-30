@@ -34,7 +34,7 @@ const Twitter = () => (
       <a href="/api/twitter">
         <img
           style={styles.twitterImg}
-          src="/twitter.svg"
+          src="/twitter.png"
           alt="GitHub"
         />
       </a>

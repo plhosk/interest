@@ -93,8 +93,8 @@ class SingleImage extends React.Component {
           <Img
             style={{ ...styles.img, height: this.state.imgHeight }}
             alt={caption}
-            src={[url, '/imagenotfound.svg']}
-            data-src={[url, '/imagenotfound.svg']}
+            src={[url, '/imagenotfound.png']}
+            data-src={[url, '/imagenotfound.png']}
             data-caption={caption}
             onLoad={this.handleImageLoad}
             loader={<div style={styles.progress}><CircularProgress size={80} /></div>}
