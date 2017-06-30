@@ -17,6 +17,13 @@
     /*background-color: #303030;*/
     font-family: Roboto, sans-serif;
   }
+  /* class for link styling, because CSS pseudo-classes can't be used with inline JS */
+  .styledLink:link, .styledLink:visited {
+    color: #555;
+  }
+  .styledLink:link:active, .styledLink:visited:active {
+    color: #aaa;
+  }
   /* Prevent autocompleted form fields from turning yellow */
   /*
   input:-webkit-autofill {

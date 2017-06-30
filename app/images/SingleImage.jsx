@@ -124,7 +124,7 @@ class SingleImage extends React.Component {
               </div>
               <div>
                 <div style={styles.submitterDiv}>
-                  <Link to={`/users/${submitterId}`}>
+                  <Link className="styledLink" to={`/users/${submitterId}`}>
                     {submitterName}
                   </Link>
                 </div>

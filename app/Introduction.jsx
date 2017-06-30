@@ -62,6 +62,7 @@ class Introduction extends React.Component {
                 or click to log in as a&nbsp;
                 <a
                   href="/signup"
+                  className="styledLink"
                   role="button"
                   onClick={this.loginTestUser}
                 >Test User</a>
@@ -75,6 +76,7 @@ class Introduction extends React.Component {
             <li style={styles.li}>
               Check out the <a
                 href="https://github.com/plhosk/interest"
+                className="styledLink"
                 target="_blank"
                 rel="noopener noreferrer"
               >
