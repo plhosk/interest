@@ -52,7 +52,7 @@ const styles = {
     // maxWidth and maxHeight are set in the component definition below
   },
   zoomSpacer: {
-    height: 5000,
+    height: 64,
   },
 }
 
