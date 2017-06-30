@@ -7,6 +7,13 @@ import User from './schemas/user'
 
 const LocalStrategy = passportLocal.Strategy
 
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min)) + min
+  //The maximum is exclusive and the minimum is inclusive
+}
+
 passport.use('login', new LocalStrategy((username, password, done) => {
   User.findOne({
     'local.username': username,
@@ -54,7 +61,7 @@ passport.use(new GitHubStrategy({
         'github.username': profile.username,
         'github.id': profile.id.toString(),
         displayName: profile.name,
-        'local.username': `github-${profile.username}`, // to prevent duplicate usernames
+        'local.username': `github-${profile.username}-${getRandomInt(1, 100000)}`, // to prevent duplicate usernames
       })
       return user.save((errSave) => {
         if (errSave) {
@@ -85,7 +92,7 @@ passport.use(new TwitterStrategy({
         'twitter.id': profile.id.toString(),
         'twitter.name': profile.username,
         displayName: profile.displayName,
-        'local.username': `twitter-${profile.username}`, // to prevent duplicate usernames
+        'local.username': `twitter-${profile.username}-${getRandomInt(1, 100000)}`, // to prevent duplicate usernames
       })
       return user.save()
       .then(userSaved => done(null, userSaved))
