@@ -116,6 +116,8 @@ const imagesDeleteFetch = imageId => (
 function* imagesDeleteRequest(action) {
   try {
     const image = yield call(imagesDeleteFetch, action.imageId)
+    // MASONRY_DELETE_IMAGE has to be first to avoid errors
+    yield put({ type: 'MASONRY_DELETE_IMAGE', imageId: image.imageId })
     yield put({ type: 'IMAGES_SINGLE_RECEIVED', image })
   } catch (e) {
     const { status, message } = e

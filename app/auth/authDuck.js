@@ -135,6 +135,7 @@ const authSignupFetch = (username, password) => (
 function* authSignupRequest(action) {
   try {
     yield call(authSignupFetch, action.username, action.password)
+    yield put({ type: 'USERINFO_REQUEST' }) // update userInfo upon signup
     yield put({
       type: 'AUTH_LOGIN_REQUEST',
       username: action.username,

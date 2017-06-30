@@ -31,7 +31,10 @@ const AppContent = () => (
       </Switch>
       <Route component={ErrorDisplay} />
       <Route component={SubmitImage} />
-      <Route component={ImageBoard} />
+      <Switch>
+        <Route path="/users/:userId" component={ImageBoard} />
+        <Route component={ImageBoard} />
+      </Switch>
     </div>
   </div>
 )

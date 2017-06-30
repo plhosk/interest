@@ -2,10 +2,9 @@ Task list
 
 Client:
   ☐ Broken image detection and replacement
-  ☐ Delete support (user gets delete box on mouseover)
   ☐ Add twitter auth support to client
   ☐ Streamline introduction
-  ☐ Browse posts of a specific user (click on username)
+  ☐ Review and simplify Masonry code
   ☐ Check page on other browsers
   ☐ Implement code-splitting
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today

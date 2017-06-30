@@ -22,6 +22,7 @@ const initialState = {
   masonry: {
     hasMore: false,
     newElements: [],
+    deletedElements: [],
   },
 }
 

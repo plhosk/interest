@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import TimeAgo from 'react-timeago'
 import Paper from 'material-ui/Paper'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ActionDelete from 'material-ui/svg-icons/action/delete'
+import { Link } from 'react-router-dom'
 
 const styles = {
   imageContainer: {
@@ -35,6 +38,25 @@ const styles = {
     textAlign: 'right',
     color: '#999',
   },
+  infoLower: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
+  },
+  deleteButtonDiv: {
+    height: 36,
+    zoom: 1,
+    opacity: 0.8,
+    marginLeft: -8, // move it left so it lines up with corner
+    marginRight: 4,
+    // border: '1px solid grey',
+    alignSelf: 'flex-end',
+  },
+  deleteButton: {
+    opacity: 0.7,
+    alignSelf: 'flex-end',
+    // display: 'none',
+  },
 }
 
 class SingleImage extends React.Component {
@@ -43,7 +65,6 @@ class SingleImage extends React.Component {
     imgHeight: 250,
   }
 
-
   onLoad = () => {
     this.setState({ imgHeight: 'auto' }, () => {
       this.props.forcePack()
@@ -51,8 +72,9 @@ class SingleImage extends React.Component {
   }
 
   render() {
-    const { preview, imageId, url, caption, submitterId, submitterName, date,
-  } = this.props
+    const {
+      preview, imageId, url, caption, submitterId, submitterName, date, showDelete, handleDelete,
+    } = this.props
     return (
       <Paper style={styles.imageContainer}>
         <div style={styles.imgDiv}>
@@ -68,12 +90,31 @@ class SingleImage extends React.Component {
             {caption}
           </div>
           {!preview && (
-            <div>
-              <div style={styles.submitterDiv}>
-                {`${submitterName} (#${submitterId})`}
+            <div style={styles.infoLower}>
+              <div style={styles.deleteButtonDiv}>
+                {showDelete &&
+                  <FloatingActionButton
+                    mini
+                    backgroundColor={'#fff'}
+                    style={styles.deleteButton}
+                    iconStyle={{ fill: 'grey' }}
+                    data-id={imageId}
+                    onClick={handleDelete}
+                  >
+                    { /*  */ }
+                    <ActionDelete />
+                  </FloatingActionButton>
+                }
               </div>
-              <div style={styles.dateDiv}>
-                <TimeAgo date={Date.parse(date)} />{` (#${imageId})`}
+              <div>
+                <div style={styles.submitterDiv}>
+                  <Link to={`/users/${submitterId}`}>
+                    {submitterName}
+                  </Link>
+                </div>
+                <div style={styles.dateDiv}>
+                  <TimeAgo date={Date.parse(date)} />{` (#${imageId})`}
+                </div>
               </div>
             </div>
           )}
@@ -94,6 +135,8 @@ SingleImage.propTypes = {
   submitterId: PropTypes.number,
   submitterName: PropTypes.string,
   date: PropTypes.string,
+  showDelete: PropTypes.bool,
+  handleDelete: PropTypes.func,
 }
 
 SingleImage.defaultProps = {
@@ -103,6 +146,8 @@ SingleImage.defaultProps = {
   submitterId: 0,
   submitterName: '',
   date: '0',
+  showDelete: false,
+  handleDelete: () => {},
 }
 
-export default SingleImage
+export default connect()(SingleImage)
