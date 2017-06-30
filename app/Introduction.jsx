@@ -55,6 +55,13 @@ class Introduction extends React.Component {
             <li style={styles.li}>
               Welcome to Interest - a Pinterest-style image board
             </li>
+            <li style={styles.li}>
+              Browse images posted by other users
+            </li>
+            <li style={styles.li}>
+              Log in to add your own images from around the web.
+              Just enter the image URL and a caption
+            </li>
             {(!user) ?
               <li style={styles.li}>
                 Go to the top right corner to sign in
@@ -69,10 +76,6 @@ class Introduction extends React.Component {
               </li> : <li style={styles.li}>You&apos;re logged in. Feel free to
               experiment with the site&apos;s features!</li>
             }
-            <li style={styles.li}>
-              While signed in, you can add your own images from around the web.
-              Just enter the image URL and a caption
-            </li>
             <li style={styles.li}>
               Check out the <a
                 href="https://github.com/plhosk/interest"

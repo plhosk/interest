@@ -39,7 +39,7 @@ const styles = {
   zoomDiv: {
     height: '100%',
     display: 'flex',
-    flexFlow: 'row nowrap',
+    flexFlow: 'column nowrap',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#faefd4',
@@ -48,7 +48,11 @@ const styles = {
   zoomImg: {
     width: 'auto',
     height: 'auto',
+    // borderRadius: 6,
     // maxWidth and maxHeight are set in the component definition below
+  },
+  zoomSpacer: {
+    height: 5000,
   },
 }
 
@@ -263,11 +267,12 @@ class ImageBoard extends React.Component {
             <Img
               style={{ ...styles.zoomImg,
                 maxWidth: window.innerWidth * 0.95,
-                maxHeight: (window.innerHeight * 0.95) - 64 }}
+                maxHeight: (window.innerHeight * 0.95) - 128 }}
               alt={this.state.zoomCaption}
               src={this.state.zoomSrc}
               loader={<div style={styles.progress}><CircularProgress size={80} /></div>}
             />
+            <div style={styles.zoomSpacer}>&nbsp;</div>
           </div>
         </FullscreenDialog>
       </div>

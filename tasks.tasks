@@ -1,10 +1,11 @@
 Task list
 
 Client:
-  ☐ Add more comments
-  ☐ Clean up components
+  ☐ Add hover effects to all clickable elementse
+  ☐ Add more comments to code
+  ☐ Break up large components into sub-components
   ☐ Add License
-  ☐ Edit README.md
+  ☐ Proofread README.md
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
 
 Server:
