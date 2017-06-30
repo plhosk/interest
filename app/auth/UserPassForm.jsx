@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
 import GitHub from './GitHub'
+import Twitter from './Twitter'
 
 const styles = {
   outerDiv: {
@@ -27,6 +28,9 @@ const styles = {
   button: {
     maxWidth: 200,
     marginTop: 10,
+  },
+  authDiv: {
+    marginRight: 20,
   },
 }
 
@@ -105,7 +109,10 @@ const UserPassForm = (props) => {
           />
         </form>
       </div>
-      <GitHub />
+      <div style={styles.authDiv}>
+        <GitHub />
+        <Twitter />
+      </div>
     </div>
   )
 }

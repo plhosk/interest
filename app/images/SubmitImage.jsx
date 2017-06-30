@@ -9,7 +9,7 @@ import HardwareKeyboardArrowDown from 'material-ui/svg-icons/hardware/keyboard-a
 import HardwareKeyboardArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
 import ImageImage from 'material-ui/svg-icons/image/image'
 import ImageAddToPhotos from 'material-ui/svg-icons/image/add-to-photos'
-// import FlatButton from 'material-ui/FlatButton'
+import validUrl from 'valid-url'
 
 import SingleImage from './SingleImage'
 
@@ -141,20 +141,27 @@ class SubmitImage extends React.Component {
 
   handlePreview = (event) => {
     event.preventDefault()
-    this.setState({
-      showPreview: !this.state.showPreview,
-      previewUrl: this.state.url,
+    const isUrlValid = validUrl.isWebUri(this.state.url)
+    const urlErrorText = isUrlValid ? '' : 'Must be a valid web URL'
+    const previewUrl = isUrlValid ? this.state.url : ''
+    return this.setState({
+      // showPreview: !this.state.showPreview,
+      showPreview: true,
+      previewUrl,
       previewCaption: this.state.caption,
+      urlErrorText,
+      captionErrorText: '',
     })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     let doNotSubmit = false
-    if (this.state.url === '') {
-      this.setState({ urlErrorText: 'This field is required' })
+    if (!validUrl.isWebUri(this.state.url)) {
+      this.setState({ urlErrorText: 'Must be a valid web URL' })
       doNotSubmit = true
     } else {
+      console.log(`URL is valid: ${this.state.url}`) // eslint-disable-line no-console
       this.setState({ urlErrorText: '' })
     }
     if (this.state.caption === '') {

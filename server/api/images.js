@@ -1,5 +1,6 @@
 import express from 'express'
 import debug from 'debug'
+import validUrl from 'valid-url'
 
 import Image from '../schemas/image'
 
@@ -72,6 +73,9 @@ router.route('/')
     log('Received API request to add a new image')
     if (!req.isAuthenticated()) {
       return next({ status: 401, message: 'User not authenticated' })
+    }
+    if (!validUrl.isWebUri(req.body.url)) {
+      next({ status: 400, message: 'Submitted URL is malformed' })
     }
     const image = new Image()
     image.submitterId = req.user.userId

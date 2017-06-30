@@ -2,16 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ImageImage from 'material-ui/svg-icons/image/image'
-import RaisedButton from 'material-ui/RaisedButton'
 
 const styles = {
   outerDiv: {
-    // backgroundColor: '#f1f1f2',
-    borderRadius: 40,
-    fontSize: '1.1em',
-    lineHeight: '1.8em',
-    margin: 10,
-    padding: 5,
+    margin: 5,
   },
   logo: {
     height: 60,
@@ -32,11 +26,15 @@ const styles = {
     margin: '0 auto',
     marginBottom: 10,
   },
+  li: {
+    margin: 15,
+  },
 }
 
 // const Introduction = () => (
 class Introduction extends React.Component {
-  loginTestUser = () => {
+  loginTestUser = (event) => {
+    event.preventDefault()
     this.props.dispatch({
       type: 'AUTH_LOGIN_REQUEST',
       username: 'test',
@@ -54,31 +52,34 @@ class Introduction extends React.Component {
         </div>
         <div style={styles.content}>
           <ul>
-            <li>
-              Interest - a full stack Pinterest-style image board
+            <li style={styles.li}>
+              Welcome to Interest - a Pinterest-style image board
             </li>
             {(!user) ?
-              <li>
-                Click to log in as a &nbsp;<RaisedButton
-                  label="Test user"
+              <li style={styles.li}>
+                Go to the top right corner to sign in
+                with your Twitter or GitHub account,
+                or click to log in as a&nbsp;
+                <a
+                  href="/signup"
+                  role="button"
                   onClick={this.loginTestUser}
-                />
-                &nbsp; or create your own account to try out the site&apos;s features.
-              </li> : <li>You&apos;re logged in. Feel free to
+                >Test User</a>
+              </li> : <li style={styles.li}>You&apos;re logged in. Feel free to
               experiment with the site&apos;s features!</li>
             }
-            <li>
-              While logged in, click your username in the top right corner to
-              edit your profile.
+            <li style={styles.li}>
+              While signed in, you can add your own images from around the web.
+              Just enter the image URL and a caption
             </li>
-            <li>
-              Check out this app&rsquo;s source code on <a
+            <li style={styles.li}>
+              Check out the <a
                 href="https://github.com/plhosk/interest"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub
-              </a>.
+                GitHub repository
+              </a> for more information
             </li>
           </ul>
         </div>

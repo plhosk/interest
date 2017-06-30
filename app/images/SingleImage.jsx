@@ -5,7 +5,9 @@ import TimeAgo from 'react-timeago'
 import Paper from 'material-ui/Paper'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ActionDelete from 'material-ui/svg-icons/action/delete'
+import CircularProgress from 'material-ui/CircularProgress'
 import { Link } from 'react-router-dom'
+import Img from 'react-image'
 
 const styles = {
   imageContainer: {
@@ -19,6 +21,14 @@ const styles = {
   img: {
     width: 230,
     borderRadius: 6,
+  },
+  progress: {
+    height: 250,
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // border: '1px solid grey',
   },
   infoPanel: {
     padding: 10,
@@ -78,11 +88,12 @@ class SingleImage extends React.Component {
     return (
       <Paper style={styles.imageContainer}>
         <div style={styles.imgDiv}>
-          <img
+          <Img
             style={{ ...styles.img, height: this.state.imgHeight }}
             alt={caption}
-            src={url}
+            src={[url, '/imagenotfound.svg']}
             onLoad={this.onLoad}
+            loader={<div style={styles.progress}><CircularProgress size={80} /></div>}
           />
         </div>
         <div style={styles.infoPanel}>

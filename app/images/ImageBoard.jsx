@@ -13,13 +13,13 @@ const styles = {
   header: {
     textAlign: 'center',
     margin: '0 auto',
-    width: 500,
+    maxWidth: 1000,
     marginTop: 15,
     fontSize: '1.3em',
-    border: '1px solid grey',
+    border: '2px solid grey',
     borderRadius: 6,
-    backgroundColor: 'white',
-    padding: 4,
+    backgroundColor: '#fbcd4b',
+    padding: 6,
   },
   headerName: {
     fontWeight: 'bold',
@@ -146,11 +146,11 @@ class ImageBoard extends React.Component {
       <div>
         {match.params.userId && (
           <div style={styles.header}>
-            Showing images sbmitted by <span style={styles.headerName}>{
+            Showing images by <span style={styles.headerName}>{
               userInfo.allIds.includes(parseInt(match.params.userId, 10)) ?
               userInfo.byId[parseInt(match.params.userId, 10)].name :
               match.params.userId
-            }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link to="/">Show All</Link>
+            }</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link to="/">Show&nbsp;All</Link>
           </div>
         )}
         <Masonry

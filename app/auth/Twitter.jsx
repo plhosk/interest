@@ -7,10 +7,10 @@ const styles = {
     flexGrow: 1,
     marginTop: 20,
   },
-  githubImg: {
+  twitterImg: {
     verticalAlign: 'middle',
-    width: 64,
-    height: 64,
+    width: 56,
+    height: 56,
     opacity: 0.8,
   },
   githubPaper: {
@@ -20,20 +20,21 @@ const styles = {
     borderColor: 'rgba(255,255,255,0)',
     borderWidth: 12,
     borderRadius: 100,
+    padding: 4,
   },
   githubP: {
     marginBottom: 0,
   },
 }
 
-const Github = () => (
+const Twitter = () => (
   <div style={styles.outerDiv}>
-    <p style={styles.githubP}>Click to log in with <b>GitHub</b></p>
+    <p style={styles.githubP}>Click to log in with <b>Twitter</b></p>
     <Paper style={styles.githubPaper} zDepth={3}>
-      <a href="/api/github">
+      <a href="/api/twitter">
         <img
-          style={styles.githubImg}
-          src="/github.png"
+          style={styles.twitterImg}
+          src="/twitter.svg"
           alt="GitHub"
         />
       </a>
@@ -41,4 +42,4 @@ const Github = () => (
   </div>
 )
 
-export default Github
+export default Twitter
