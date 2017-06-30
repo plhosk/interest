@@ -76,7 +76,7 @@ passport.use(new TwitterStrategy({
 }, (token, tokenSecret, profile, done) => {
   console.log(JSON.stringify(profile)) // eslint-disable-line no-console
   User.findOne({
-    'twitter.id': profile.id_str,
+    'twitter.id': profile.id.toString(),
   })
   .then((user) => {
     if (!user) { // No user with the same twitter id found. Create a new user
