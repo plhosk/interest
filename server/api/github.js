@@ -10,6 +10,7 @@ router.route('/callback')
     })
 
 router.route('/')
-  .get(passport.authenticate('github', { scope: ['user:email'] }))
+  .get(passport.authenticate('github'))
+  // .get(passport.authenticate('github', { scope: ['user:email'] }))
 
 export default router
