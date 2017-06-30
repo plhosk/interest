@@ -71,8 +71,9 @@ const TwitterStrategy = passportTwitter.Strategy
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_KEY,
   consumerSecret: process.env.TWITTER_SECRET,
-  callbackURL: 'https://interest-plhosk.herokuapp.com/api/twitter/callback',
+  callbackURL: process.env.TWITTER_CALLBACK,
 }, (token, tokenSecret, profile, done) => {
+  console.log(JSON.stringify(profile)) // eslint-disable-line no-console
   User.findOne({
     'twitter.id': profile.id_str,
   })
