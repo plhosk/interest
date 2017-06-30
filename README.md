@@ -28,8 +28,8 @@ This is a full-stack interactive web app I wrote using Javascript.
 This is a full-stack web app, consisting of a Node/Express API server and a React front end.
 
 **Front end** 
-- The front end is a single-page app written with React and Redux, which is an interactive javascript software application running in a user's web browser. This allows for higher responsiveness and interactivity compared to a traditional static web page.
-- Redux manages the flow of data inside the app and allows for fast development, modularity and scalability of the application.
+- The front end is a single-page app, which is basically an interactive javascript software application running in a user's web browser. This allows for higher responsiveness and interactivity compared to a traditional static web page.
+- React and Redux manage the flow and presentation of data inside the app and allow for fast development, modularity and scalability of the application.
 
 **Server**
 - The server provides a secure REST API for user authentication and communicating data with the front end.
