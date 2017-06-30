@@ -2970,6 +2970,12 @@ make-dir@^1.0.0:
   dependencies:
     pify "^2.3.0"
 
+material-ui-fullscreen-dialog@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/material-ui-fullscreen-dialog/-/material-ui-fullscreen-dialog-0.4.0.tgz#e562b77a6e95ddd8c1ae9d20ee44d70295bb423c"
+  dependencies:
+    prop-types "^15.5.8"
+
 material-ui@^0.18.3:
   version "0.18.5"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.5.tgz#3dcd9e2f31a5fb1281224056b51261b8af4738d5"

@@ -40,9 +40,10 @@ app.use(session({
   secret: process.env.EXPRESS_SESSION_SECRET,
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
+    touchAfter: 24 * 3600, // only update session once per user in 24 hours
   }),
-  resave: true,
-  saveUninitialized: true,
+  resave: false, // don't save session if unmodified
+  saveUninitialized: false, // don't create session until something stored
 }))
 // define passport strategies
 myPassport()

@@ -21,6 +21,7 @@ const styles = {
   img: {
     width: 230,
     borderRadius: 6,
+    cursor: 'pointer',
   },
   progress: {
     height: 250,
@@ -75,7 +76,7 @@ class SingleImage extends React.Component {
     imgHeight: 250,
   }
 
-  onLoad = () => {
+  handleImageLoad = () => {
     this.setState({ imgHeight: 'auto' }, () => {
       this.props.forcePack()
     })
@@ -83,7 +84,8 @@ class SingleImage extends React.Component {
 
   render() {
     const {
-      preview, imageId, url, caption, submitterId, submitterName, date, showDelete, handleDelete,
+      preview, imageId, url, caption, submitterId, submitterName,
+      date, showDelete, handleDelete, handleImageClick,
     } = this.props
     return (
       <Paper style={styles.imageContainer}>
@@ -92,8 +94,11 @@ class SingleImage extends React.Component {
             style={{ ...styles.img, height: this.state.imgHeight }}
             alt={caption}
             src={[url, '/imagenotfound.svg']}
-            onLoad={this.onLoad}
+            data-src={[url, '/imagenotfound.svg']}
+            data-caption={caption}
+            onLoad={this.handleImageLoad}
             loader={<div style={styles.progress}><CircularProgress size={80} /></div>}
+            onClick={handleImageClick}
           />
         </div>
         <div style={styles.infoPanel}>
@@ -148,6 +153,7 @@ SingleImage.propTypes = {
   date: PropTypes.string,
   showDelete: PropTypes.bool,
   handleDelete: PropTypes.func,
+  handleImageClick: PropTypes.func,
 }
 
 SingleImage.defaultProps = {
@@ -159,6 +165,7 @@ SingleImage.defaultProps = {
   date: '0',
   showDelete: false,
   handleDelete: () => {},
+  handleImageClick: () => {},
 }
 
 export default connect()(SingleImage)

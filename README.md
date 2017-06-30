@@ -16,13 +16,14 @@ This is a full-stack interactive web app I wrote using Javascript.
 
 ---
 
-- Try the live version on Heroku (may take a few seconds to fire up the server the first time): [https://interest-plhosk.herokuapp.com/](https://interest-plhosk.herokuapp.com/)
+- [Try the live version on Heroku](https://interest-plhosk.herokuapp.com/) (may take a few seconds to fire up the server the first time):
+
 - GitHub Repository: [https://github.com/plhosk/interest](https://github.com/plhosk/interest)
 
 ---
 
 ### Motivation
-- This project is part of an effort to teach myself how to develop full stack web apps. Rather than use create-react-app or another boilerplate, I wanted to learn as much as possible by building from the ground up over several iterations, while making use of some of the latest Javascript technologies. I've attempted to make the code as correct, well-structured and readable as possible, following best practices as I learn them.
+- This project is part of an effort to teach myself how to develop full-stack web apps. Rather than use create-react-app or another boilerplate, I wanted to learn as much as possible by building from the ground up over several iterations, while making use of some of the latest Javascript technologies. I've attempted to make the code as correct, well-structured and readable as possible, following best practices as I learn them.
 
 ### Technical Overview
 This is a full-stack web app, consisting of a Node/Express API server and a React front end.
@@ -36,15 +37,15 @@ This is a full-stack web app, consisting of a Node/Express API server and a Reac
 - The server interfaces with a remote MongoDB database, allowing for persistent storage and retrieval of data.
 
 **Development**
-- The project is tailored for ease of development, with hot reloading and linting to allow for faster iteration and fewer bugs.
+- The project is tailored for ease of development, with Webpack, hot reloading and linting to allow for faster iteration and fewer bugs.
 - Babel provides javascript transcoding, allowing for the use of the newest ES6+ language features.
 
 ### Development Instructions
 - Install [Node.js](https://nodejs.org/en/) and Git (optional)
 - Clone or download the source code from the app's Git repository: `git clone https://github.com/plhosk/interest.git interest`
 - Enter project folder: `cd interest`
-- Install npm dependencies: `yarn` (if necessary, install yarn globally with `npm install -g yarn`)
-- Rename the file ".env.example" in your project directory to ".env" and assign the URL of your node server to the SERVER_URL variable (example: `SERVER_URL=http://localhost:3000`)
+- Install npm dependencies: `yarn` (if necessary, first install yarn globally with `npm install -g yarn`)
+- Set up a local or remote MongoDB server. Rename the file ".env.example" in your project directory to ".env" and assign the URI of your Mongo server to the MONGO_URI variable (example: `MONGO_URI=mongodb://<username>:<password>@server:port/interest`)
 - Start the Node/Express web server: `yarn start`
 - Visit the server URL in your web browser (default port 3000): [http://localhost:3000](http://localhost:3000)
 - The server provides Hot Reloading and dynamic webpack bundling in development mode. Alternatively you can build a static production bundle with `yarn build-prod` and start the production server with `yarn start-prod`

@@ -126,13 +126,13 @@ class TopBar extends React.Component {
       <FlatButton
         label="Cancel"
         primary
-        onTouchTap={this.handleCloseProfileDialog}
+        onClick={this.handleCloseProfileDialog}
       />,
       <FlatButton
         label="Submit"
         primary
         keyboardFocused
-        onTouchTap={this.handleProfileSubmit}
+        onClick={this.handleProfileSubmit}
       />,
     ]
 

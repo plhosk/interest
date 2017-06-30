@@ -27,6 +27,7 @@ const styles = {
     justifyContent: 'space-between',
     height: 50,
     userSelect: 'none',
+    cursor: 'pointer',
   },
   title: {
     flex: '2 1 auto',

@@ -2,9 +2,9 @@ Task list
 
 Client:
   ☐ Add more comments
-  ☐ Write README.md
-  ☐ Check page on other browsers
-  ☐ Implement code-splitting
+  ☐ Clean up components
+  ☐ Add License
+  ☐ Edit README.md
   ☐ Tasks plugin: Ctrl-Enter for new, Alt-d to toggle done, Alt-c to cancel @critical @high @low @today
 
 Server:

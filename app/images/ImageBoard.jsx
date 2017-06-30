@@ -4,8 +4,11 @@ import { connect } from 'react-redux'
 import Masonry from 'react-masonry-infinite'
 import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton'
+import CircularProgress from 'material-ui/CircularProgress'
+import FullscreenDialog from 'material-ui-fullscreen-dialog'
 import TimeAgo from 'react-timeago'
 import { Link } from 'react-router-dom'
+import Img from 'react-image'
 
 import SingleImage from './SingleImage'
 
@@ -27,6 +30,23 @@ const styles = {
   },
   masonry: {
     margin: '10px 0',
+  },
+  zoomAppBar: {
+    backgroundColor: '#a57c65',
+  },
+  zoomDiv: {
+    height: '100%',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#faefd4',
+    cursor: 'pointer',
+  },
+  zoomImg: {
+    width: 'auto',
+    height: 'auto',
+    // maxWidth and maxHeight are set in the component definition below
   },
 }
 
@@ -57,6 +77,9 @@ class ImageBoard extends React.Component {
 
   state = {
     elements: [],
+    zoomDialogOpen: false,
+    zoomSrc: [],
+    zoomCaption: '',
     deleteDialogOpen: false,
     deleteId: 0,
   }
@@ -68,6 +91,19 @@ class ImageBoard extends React.Component {
   // handleDeleteDialogOpen = () => {
   //   this.setState({ deleteDialogOpen: true })
   // }
+
+  handleZoomDialogClose = () => {
+    this.setState({ zoomDialogOpen: false, zoomSrc: [], zoomCaption: '' })
+  }
+
+  handleImageClick = (e) => {
+    this.setState({
+      zoomDialogOpen: true,
+      zoomSrc: e.currentTarget.dataset.src,
+      zoomCaption: e.currentTarget.dataset.caption,
+    })
+    e.preventDefault()
+  }
 
   handleDeleteDialogClose = () => {
     this.setState({ deleteDialogOpen: false, deleteId: 0 })
@@ -170,11 +206,12 @@ class ImageBoard extends React.Component {
               submitterId={images.byId[imageId].submitterId}
               submitterName={userInfo.byId[images.byId[imageId].submitterId].name}
               date={images.byId[imageId].date}
-              forcePack={this.masonryClass.forcePack}
+              forcePack={this.masonryClass ? this.masonryClass.forcePack : () => {}}
               showDelete={
                 user && user.userId === images.byId[imageId].submitterId
               }
               handleDelete={this.handleDelete}
+              handleImageClick={this.handleImageClick}
             />
           ))}
         </Masonry>
@@ -187,13 +224,13 @@ class ImageBoard extends React.Component {
           actions={[
             <RaisedButton
               label="Cancel"
-              onTouchTap={this.handleDeleteDialogClose}
+              onClick={this.handleDeleteDialogClose}
             />,
             <RaisedButton
               label="Delete Image"
               primary
               keyboardFocused
-              onTouchTap={this.deleteConfirmed}
+              onClick={this.deleteConfirmed}
             />,
           ]}
         >
@@ -207,6 +244,30 @@ class ImageBoard extends React.Component {
             </div>
           }
         </Dialog>
+
+        <FullscreenDialog
+          title={this.state.zoomCaption}
+          modal={false}
+          open={this.state.zoomDialogOpen}
+          onRequestClose={this.handleZoomDialogClose}
+          appBarStyle={styles.zoomAppBar}
+        >
+          <div
+            style={styles.zoomDiv}
+            onClick={this.handleZoomDialogClose}
+            role="button"
+            tabIndex={0}
+          >
+            <Img
+              style={{ ...styles.zoomImg,
+                maxWidth: window.innerWidth * 0.95,
+                maxHeight: (window.innerHeight * 0.95) - 64 }}
+              alt={this.state.zoomCaption}
+              src={this.state.zoomSrc}
+              loader={<div style={styles.progress}><CircularProgress size={80} /></div>}
+            />
+          </div>
+        </FullscreenDialog>
       </div>
     )
   }
