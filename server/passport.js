@@ -53,6 +53,7 @@ passport.use(new GitHubStrategy({
       user = new User({ // eslint-disable-line no-param-reassign
         'github.username': profile.username,
         'github.id': profile.id.toString(),
+        displayName: profile.name,
       })
       return user.save((errSave) => {
         if (errSave) {
@@ -80,8 +81,9 @@ passport.use(new TwitterStrategy({
   .then((user) => {
     if (!user) { // No user with the same twitter id found. Create a new user
       const newUser = new User({
-        'twitter.id': profile.id_str,
+        'twitter.id': profile.id.toString(),
         'twitter.name': profile.name,
+        displayName: profile.displayName,
       })
       return newUser.save()
       .then(newUserSaved => done(null, newUserSaved))
