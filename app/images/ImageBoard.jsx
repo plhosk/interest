@@ -30,6 +30,9 @@ const styles = {
     // color: '#303030',
     color: '#182652',
   },
+  linkShowAll: {
+    color: '#1995ad',
+  },
   masonry: {
     margin: '10px 0',
   },
@@ -188,11 +191,11 @@ class ImageBoard extends React.Component {
       <div>
         {match.params.userId && (
           <div style={styles.header}>
-            Images by <span style={styles.headerName}>{
+            Showing <span style={styles.headerName}>{
               userInfo.allIds.includes(parseInt(match.params.userId, 10)) ?
               userInfo.byId[parseInt(match.params.userId, 10)].name :
               match.params.userId
-            }</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link className="styledLink" to="/">Show&nbsp;All</Link>
+            }</span>&apos;s images &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link style={styles.linkShowAll} className="styledLink" to="/">Show&nbsp;All</Link>
           </div>
         )}
         <Masonry

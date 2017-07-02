@@ -41,7 +41,7 @@ const styles = {
     textAlign: 'center',
   },
   submitterDiv: {
-    fontSize: '1em',
+    fontSize: '0.8em',
     textAlign: 'right',
   },
   dateDiv: {

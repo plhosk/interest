@@ -1,8 +1,11 @@
 Task list
 
 Client:
-  ☐ Add hover effects to all clickable elementse
+  ☐ Add hover effects to all clickable elements
+  ☐ Spruce up the UI with some background images
+  ☐ Use react-router and history add/replace to implement back button (returns to main page when you click back, only 1 image zoom is saved in history and is overwritten each time a new zoom is opened
   ☐ Add more comments to code
+  ☐ Track users' movements and actions (API post the data upon closing window?)
   ☐ Break up large components into sub-components
   ☐ Add License
   ☐ Proofread README.md
